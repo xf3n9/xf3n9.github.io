@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Boxwalks on xf3n9 secwalk</title>
+    <link>http://xf3n9.github.io/boxwalk/</link>
+    <description>Recent content in Boxwalks on xf3n9 secwalk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 Mar 2023 11:30:19 +0800</lastBuildDate><atom:link href="http://xf3n9.github.io/boxwalk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Goldeneye</title>
+      <link>http://xf3n9.github.io/boxwalk/vulnhub/goldeneye/</link>
+      <pubDate>Fri, 31 Mar 2023 11:30:19 +0800</pubDate>
+      
+      <guid>http://xf3n9.github.io/boxwalk/vulnhub/goldeneye/</guid>
+      <description>本篇思路： #pop3 #moodle #overlayfs 使用工具： #nmap #hydra #nc #whatweb
+1. 端口信息枚举## 主机存活扫描： nmap -sn 10.10.8.0/24 # 全端口扫描： nmap --min-rate 10000 -Pn -p- 10.10.8.152 PORT STATE SERVICE 25/tcp open smtp 80/tcp open http 55006/tcp open unknown 55007/tcp open unknown # 端口服务扫描： nmap -A -sV -T5 10.10.8.152 2. Web信息收集#1) 访问80端口，提示Naviagate to /sev-home/ to login // 新标签页打开 http://10.10.8.152/sev-home 2) F12开发者工具，看到terminal.js文件，点击查看 // 获得两个用户名： Boris Natalya // 一个encoded p@ssword： &amp;amp;#73;&amp;amp;#110;&amp;amp;#118;&amp;amp;#105;&amp;amp;#110;&amp;amp;#99;&amp;amp;#105;&amp;amp;#98;&amp;amp;#108;&amp;amp;#101;&amp;amp;#72;&amp;amp;#97;&amp;amp;#99;&amp;amp;#107;&amp;amp;#51;&amp;amp;#114; 3) URL encode解码工具： // Burpsuite--Decoder--Decode as HTML 获得密码：InvincibleHack3r 1) 手工测试获取到的用户名和密码：http://10.</description>
+    </item>
+    
+    <item>
+      <title>Vulnhub</title>
+      <link>http://xf3n9.github.io/boxwalk/vulnhub/</link>
+      <pubDate>Fri, 31 Mar 2023 11:03:44 +0800</pubDate>
+      
+      <guid>http://xf3n9.github.io/boxwalk/vulnhub/</guid>
+      <description>## Introduction
+This is bold text, and this is emphasized text.
+Visit the Hugo website!
+GoldenEye </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://xf3n9.github.io/boxwalk/htb/testpage/</link>
+      <pubDate>Fri, 31 Mar 2023 11:03:36 +0800</pubDate>
+      
+      <guid>http://xf3n9.github.io/boxwalk/htb/testpage/</guid>
+      <description>## Introduction
+This is bold text, and this is emphasized text.
+Visit the Hugo website!</description>
+    </item>
+    
+    <item>
+      <title>Htb</title>
+      <link>http://xf3n9.github.io/boxwalk/htb/</link>
+      <pubDate>Fri, 31 Mar 2023 11:03:36 +0800</pubDate>
+      
+      <guid>http://xf3n9.github.io/boxwalk/htb/</guid>
+      <description>## Introduction
+This is bold text, and this is emphasized text.
+Visit the Hugo website!
+Inject </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://xf3n9.github.io/boxwalk/htb/inject/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://xf3n9.github.io/boxwalk/htb/inject/</guid>
+      <description>Inject#testing</description>
+    </item>
+    
+  </channel>
+</rss>
