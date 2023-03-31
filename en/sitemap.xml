@@ -2,11 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/starting-point/</loc>
+  </url><url>
     <loc>https://xf3n9.github.io/docs/boxwalk/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/table-of-contents/with-toc/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/table-of-contents/without-toc/</loc>
   </url><url>
     <loc>https://xf3n9.github.io/posts/creating-a-new-theme/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
@@ -14,9 +12,13 @@
     <loc>https://xf3n9.github.io/posts/migrate-from-jekyll/</loc>
     <lastmod>2014-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/table-of-contents/</loc>
+    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/</loc>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/collapsed/</loc>
+    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/inject/</loc>
+  </url><url>
+    <loc>https://xf3n9.github.io/docs/boxwalk/vulnhub/</loc>
+  </url><url>
+    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/brainfuck/</loc>
   </url><url>
     <loc>https://xf3n9.github.io/posts/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
@@ -90,11 +92,11 @@
     <loc>https://xf3n9.github.io/tags/themes/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/collapsed/3rd-level/4th-level/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/collapsed/3rd-level/</loc>
+    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/starting-point/demo/</loc>
   </url><url>
     <loc>https://xf3n9.github.io/docs/boxwalk/hidden/</loc>
+  </url><url>
+    <loc>https://xf3n9.github.io/docs/boxwalk/vulnhub/golden-eye/</loc>
   </url><url>
     <loc>https://xf3n9.github.io/docs/shortcodes/</loc>
   </url><url>

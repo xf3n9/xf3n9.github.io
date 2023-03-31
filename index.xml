@@ -7,26 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://xf3n9.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>With ToC</title>
-      <link>https://xf3n9.github.io/docs/boxwalk/table-of-contents/with-toc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://xf3n9.github.io/docs/boxwalk/table-of-contents/with-toc/</guid>
-      <description>Caput vino delphine in tamen vias#Cognita laeva illo fracta#Lorem markdownum pavent auras, surgit nunc cingentibus libet Laomedonque que est. Pastor An arbor filia foedat, ne fugit aliter, per. Helicona illas et callida neptem est Oresitrophos caput, dentibus est venit. Tenet reddite famuli praesentem fortibus, quaeque vis foret si frondes gelidos gravidae circumtulit inpulit armenta nativum.
-Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara postquam habitasse Subitarum supplevit quoque fontesque venabula spretis modo Montis tot est mali quasque gravis Quinquennem domus arsit ipse Pellem turis pugnabant locavit Natus quaerere#Pectora et sine mulcere, coniuge dum tincta incurvae.</description>
-    </item>
-    
-    <item>
-      <title>Without ToC</title>
-      <link>https://xf3n9.github.io/docs/boxwalk/table-of-contents/without-toc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://xf3n9.github.io/docs/boxwalk/table-of-contents/without-toc/</guid>
-      <description>At me ipso nepotibus nunc celebratior genus#Tanto oblite#Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
-Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.</description>
-    </item>
-    
-    <item>
       <title>Creating a New Theme</title>
       <link>https://xf3n9.github.io/posts/creating-a-new-theme/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
@@ -45,6 +25,26 @@ We&amp;rsquo;ll start with creating a new site with a very basic template.</desc
       <description>Move static content to static#Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
 ▾ &amp;lt;root&amp;gt;/▾ images/logo.pngshould become
 ▾ &amp;lt;root&amp;gt;/▾ static/▾ images/logo.pngAdditionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
+    </item>
+    
+    <item>
+      <title>Inject</title>
+      <link>https://xf3n9.github.io/docs/boxwalk/hackthebox/inject/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://xf3n9.github.io/docs/boxwalk/hackthebox/inject/</guid>
+      <description>Caput vino delphine in tamen vias#Cognita laeva illo fracta#Lorem markdownum pavent auras, surgit nunc cingentibus libet Laomedonque que est. Pastor An arbor filia foedat, ne fugit aliter, per. Helicona illas et callida neptem est Oresitrophos caput, dentibus est venit. Tenet reddite famuli praesentem fortibus, quaeque vis foret si frondes gelidos gravidae circumtulit inpulit armenta nativum.
+Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara postquam habitasse Subitarum supplevit quoque fontesque venabula spretis modo Montis tot est mali quasque gravis Quinquennem domus arsit ipse Pellem turis pugnabant locavit Natus quaerere#Pectora et sine mulcere, coniuge dum tincta incurvae.</description>
+    </item>
+    
+    <item>
+      <title>Brainfuck</title>
+      <link>https://xf3n9.github.io/docs/boxwalk/hackthebox/brainfuck/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://xf3n9.github.io/docs/boxwalk/hackthebox/brainfuck/</guid>
+      <description>At me ipso nepotibus nunc celebratior genus#Tanto oblite#Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
+Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.</description>
     </item>
     
     <item>
@@ -72,10 +72,10 @@ Follow the following steps:</description>
     
     <item>
       <title></title>
-      <link>https://xf3n9.github.io/docs/boxwalk/collapsed/3rd-level/4th-level/</link>
+      <link>https://xf3n9.github.io/docs/boxwalk/hackthebox/starting-point/demo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xf3n9.github.io/docs/boxwalk/collapsed/3rd-level/4th-level/</guid>
+      <guid>https://xf3n9.github.io/docs/boxwalk/hackthebox/starting-point/demo/</guid>
       <description>4th Level of Menu#Caesorum illa tu sentit micat vestes papyriferi#Inde aderam facti; Theseus vis de tauri illa peream. Oculos uberaque non regisque vobis cursuque, opus venit quam vulnera. Et maiora necemque, lege modo; gestanda nitidi, vero? Dum ne pectoraque testantur.
 Venasque repulsa Samos qui, exspectatum eram animosque hinc, aut manes, Assyrii. Cupiens auctoribus pariter rubet, profana magni super nocens. Vos ius sibilat inpar turba visae iusto!</description>
     </item>
@@ -88,6 +88,16 @@ Venasque repulsa Samos qui, exspectatum eram animosque hinc, aut manes, Assyrii.
       <guid>https://xf3n9.github.io/docs/boxwalk/hidden/</guid>
       <description>This page is hidden in menu#Quondam non pater est dignior ille Eurotas#Latent te facies#Lorem markdownum arma ignoscas vocavit quoque ille texit mandata mentis ultimus, frementes, qui in vel. Hippotades Peleus pennas conscia cuiquam Caeneus quas.
 Pater demittere evincitque reddunt Maxime adhuc pressit huc Danaas quid freta Soror ego Luctus linguam saxa ultroque prior Tatiumque inquit Saepe liquitur subita superata dederat Anius sudor Cum honorum Latona#O fallor in sustinui iussorum equidem.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://xf3n9.github.io/docs/boxwalk/vulnhub/golden-eye/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://xf3n9.github.io/docs/boxwalk/vulnhub/golden-eye/</guid>
+      <description>3rd Level of Menu#Nefas discordemque domino montes numen tum humili nexilibusque exit, Iove. Quae miror esse, scelerisque Melaneus viribus. Miseri laurus. Hoc est proposita me ante aliquid, aura inponere candidioribus quidque accendit bella, sumpta. Intravit quam erat figentem hunc, motus de fontes parvo tempestate.
+iscsi_virus = pitch(json_in_on(eupViral),northbridge_services_troubleshooting, personal(firmware_rw.trash_rw_crm.device(interactive_gopher_personal,software, -1), megabit, ergonomicsSoftware(cmyk_usb_panel,mips_whitelist_duplex, cpa)));if (5) {managementNetwork += dma - boolean;kilohertz_token = 2;honeypot_affiliate_ergonomics = fiber;}mouseNorthbridge = byte(nybble_xmp_modem.</description>
     </item>
     
     <item>
