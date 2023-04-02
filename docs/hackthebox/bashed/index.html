@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="bashed#">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="🌮Blog" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://xf3n9.github.io/posts/" />
-<title>🌮Blog | xf3n9 secwalk</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Bashed" />
+<meta property="og:description" content="bashed#" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xf3n9.github.io/docs/hackthebox/bashed/" /><meta property="article:section" content="docs" />
+
+
+<title>Bashed | xf3n9 secwalk</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
@@ -17,7 +19,6 @@
   <script defer src="/en.search.min.78166b9d46e23e0ea915cb6887a30b633e7bc4fad10c8b6b9f6fa532271c19ba.js" integrity="sha256-eBZrnUbiPg6pFctoh6MLYz57xPrRDItrn2&#43;lMiccGbo=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://xf3n9.github.io/posts/index.xml" title="xf3n9 secwalk" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -115,7 +116,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/hackthebox/bashed/" class="">Bashed</a>
+    <a href="/docs/hackthebox/bashed/" class="active">Bashed</a>
   
 
         </li>
@@ -269,7 +270,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>🌮Blog</strong>
+  <strong>Bashed</strong>
 
   <label for="toc-control">
     
@@ -282,49 +283,13 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-03/">2023-03</a>
-          <span>1</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/DTD/">DTD</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/XML/">XML</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/XXE/">XXE</a>
-          <span>1</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
+    <li><a href="#bashed">bashed</a></li>
   </ul>
 </nav>
+
 
 
   </aside>
@@ -334,50 +299,11 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/posts/pikachu/">Pikachu</a>
-    </h2>
-    
-  <h5>March 31, 2023</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-03/">2023-03</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/XML/">XML</a>, 
-      <a href="/tags/XXE/">XXE</a>, 
-      <a href="/tags/DTD/">DTD</a>
-  </div>
-  
-
-
-
-
-    <p>XXE
-在了解XXE之前，先了解下XML
-XML是可扩展标记语言，英文全称：eXtensible Markup Language
-我们先来具体了解一下XML到底是什么？然后再探讨这种语言设计的目的。
-第一部分：XML声明。定义XML版本（1.0），或与编码一起定义（UTF-8：万国码）&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;第二部分：DTD文档类型定义。&lt;!DOCTYPE node[]&gt;第三部分：XML元素&lt;node&gt;&lt;to&gt;Dave&lt;/to&gt;&lt;from&gt;Tom&lt;/from&gt;&lt;body&gt;You are a good man&lt;/body&gt;&lt;/node&gt; 看起来，XML由标签构成，属于树形结构。与HTML十分相像，但用途却不同。XML主要用于传输存储数据，而HTML用来显示数据外观，如标记段落、标题等。
-DTD，文档类型定义，英文全称：Document Type Definition，应该是最容易被忽视的部分。
-！内部DTD&lt;!DOCTYPE 根元素 [元素声明]&gt;！外部DTD&lt;!DOCTYPE 根元素 SYSTEM [URI]&gt;！公共DTD&lt;!DOCTYPE 根元素 PUBLIC [公共URI]&gt; XXE，XML外部实体注入漏洞，英文全称：XML eXternal Entity Injection
-漏洞原理：通过向Server提交指定的XML实体内容请求，服务器解析实体内容并进行响应所产生的漏洞。
-现状：目前多数语言默认禁止XML函数解析外部实体，此后漏洞因此得以避免。以PHP为例，libxml用来解析XML，但在PHP&gt;=2.9.0的版本中已默认禁止解析外部实体。
-模拟XXE漏洞，一般通过手动指定libxml_noent选项开启外部实体解析。
-    </p>
-  </article>
-  
-
-  
+  <article class="markdown"><h1 id="bashed">
+  bashed
+  <a class="anchor" href="#bashed">#</a>
+</h1>
+</article>
  
       
 
@@ -402,6 +328,10 @@ DTD，文档类型定义，英文全称：Document Type Definition，应该是�
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -411,49 +341,13 @@ DTD，文档类型定义，英文全称：Document Type Definition，应该是�
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-03/">2023-03</a>
-          <span>1</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/DTD/">DTD</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/XML/">XML</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/XXE/">XXE</a>
-          <span>1</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
+    <li><a href="#bashed">bashed</a></li>
   </ul>
 </nav>
+
 
  
       </div>

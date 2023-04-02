@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Introduction on xf3n9 secwalk</title>
-    <link>https://xf3n9.github.io/</link>
-    <description>Recent content in Introduction on xf3n9 secwalk</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 31 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://xf3n9.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <title>🍔Hack the Box on xf3n9 secwalk</title>
+    <link>https://xf3n9.github.io/docs/hackthebox/</link>
+    <description>Recent content in 🍔Hack the Box on xf3n9 secwalk</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://xf3n9.github.io/docs/hackthebox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bashed</title>
       <link>https://xf3n9.github.io/docs/hackthebox/bashed/</link>
@@ -54,34 +53,6 @@ be careful when directory brute forcing, as the server is misconfigured in that 
       <guid>https://xf3n9.github.io/docs/hackthebox/brainfuck/</guid>
       <description>At me ipso nepotibus nunc celebratior genus#Tanto oblite#Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
 Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.</description>
-    </item>
-    
-    <item>
-      <title>Pikachu</title>
-      <link>https://xf3n9.github.io/posts/pikachu/</link>
-      <pubDate>Fri, 31 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://xf3n9.github.io/posts/pikachu/</guid>
-      <description>XXE
-在了解XXE之前，先了解下XML
-XML是可扩展标记语言，英文全称：eXtensible Markup Language
-我们先来具体了解一下XML到底是什么？然后再探讨这种语言设计的目的。
-第一部分：XML声明。定义XML版本（1.0），或与编码一起定义（UTF-8：万国码）&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;第二部分：DTD文档类型定义。&amp;lt;!DOCTYPE node[]&amp;gt;第三部分：XML元素&amp;lt;node&amp;gt;&amp;lt;to&amp;gt;Dave&amp;lt;/to&amp;gt;&amp;lt;from&amp;gt;Tom&amp;lt;/from&amp;gt;&amp;lt;body&amp;gt;You are a good man&amp;lt;/body&amp;gt;&amp;lt;/node&amp;gt; 看起来，XML由标签构成，属于树形结构。与HTML十分相像，但用途却不同。XML主要用于传输存储数据，而HTML用来显示数据外观，如标记段落、标题等。
-DTD，文档类型定义，英文全称：Document Type Definition，应该是最容易被忽视的部分。
-！内部DTD&amp;lt;!DOCTYPE 根元素 [元素声明]&amp;gt;！外部DTD&amp;lt;!DOCTYPE 根元素 SYSTEM [URI]&amp;gt;！公共DTD&amp;lt;!DOCTYPE 根元素 PUBLIC [公共URI]&amp;gt; XXE，XML外部实体注入漏洞，英文全称：XML eXternal Entity Injection
-漏洞原理：通过向Server提交指定的XML实体内容请求，服务器解析实体内容并进行响应所产生的漏洞。
-现状：目前多数语言默认禁止XML函数解析外部实体，此后漏洞因此得以避免。以PHP为例，libxml用来解析XML，但在PHP&amp;gt;=2.9.0的版本中已默认禁止解析外部实体。
-模拟XXE漏洞，一般通过手动指定libxml_noent选项开启外部实体解析。</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://xf3n9.github.io/docs/vulnhub/golden-eye/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://xf3n9.github.io/docs/vulnhub/golden-eye/</guid>
-      <description>GoldenEye#Nefas discordemque domino montes numen tum humili nexilibusque exit, Iove. Quae miror esse, scelerisque Melaneus viribus. Miseri laurus. Hoc est proposita me ante aliquid, aura inponere candidioribus quidque accendit bella, sumpta. Intravit quam erat figentem hunc, motus de fontes parvo tempestate.
-iscsi_virus = pitch(json_in_on(eupViral),northbridge_services_troubleshooting, personal(firmware_rw.trash_rw_crm.device(interactive_gopher_personal,software, -1), megabit, ergonomicsSoftware(cmyk_usb_panel,mips_whitelist_duplex, cpa)));if (5) {managementNetwork += dma - boolean;kilohertz_token = 2;honeypot_affiliate_ergonomics = fiber;}mouseNorthbridge = byte(nybble_xmp_modem.</description>
     </item>
     
   </channel>

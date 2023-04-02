@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="XXE
+在了解XXE之前，先了解下XML
+XML是可扩展标记语言，英文全称：eXtensible Markup Language
+我们先来具体了解一下XML到底是什么？然后再探讨这种语言设计的目的。
+第一部分：XML声明。定义XML版本（1.0），或与编码一起定义（UTF-8：万国码）&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;第二部分：DTD文档类型定义。&lt;!DOCTYPE node[]&gt;第三部分：XML元素&lt;node&gt;&lt;to&gt;Dave&lt;/to&gt;&lt;from&gt;Tom&lt;/from&gt;&lt;body&gt;You are a good man&lt;/body&gt;&lt;/node&gt; 看起来，XML由标签构成，属于树形结构。与HTML十分相像，但用途却不同。XML主要用于传输存储数据，而HTML用来显示数据外观，如标记段落、标题等。
+DTD，文档类型定义，英文全称：Document Type Definition，应该是最容易被忽视的部分。
+！内部DTD&lt;!DOCTYPE 根元素 [元素声明]&gt;！外部DTD&lt;!DOCTYPE 根元素 SYSTEM [URI]&gt;！公共DTD&lt;!DOCTYPE 根元素 PUBLIC [公共URI]&gt; XXE，XML外部实体注入漏洞，英文全称：XML eXternal Entity Injection
+漏洞原理：通过向Server提交指定的XML实体内容请求，服务器解析实体内容并进行响应所产生的漏洞。
+现状：目前多数语言默认禁止XML函数解析外部实体，此后漏洞因此得以避免。以PHP为例，libxml用来解析XML，但在PHP&gt;=2.9.0的版本中已默认禁止解析外部实体。
+模拟XXE漏洞，一般通过手动指定libxml_noent选项开启外部实体解析。">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Pikachu" />
+<meta property="og:description" content="XXE
+在了解XXE之前，先了解下XML
+XML是可扩展标记语言，英文全称：eXtensible Markup Language
+我们先来具体了解一下XML到底是什么？然后再探讨这种语言设计的目的。
+第一部分：XML声明。定义XML版本（1.0），或与编码一起定义（UTF-8：万国码）&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;第二部分：DTD文档类型定义。&lt;!DOCTYPE node[]&gt;第三部分：XML元素&lt;node&gt;&lt;to&gt;Dave&lt;/to&gt;&lt;from&gt;Tom&lt;/from&gt;&lt;body&gt;You are a good man&lt;/body&gt;&lt;/node&gt; 看起来，XML由标签构成，属于树形结构。与HTML十分相像，但用途却不同。XML主要用于传输存储数据，而HTML用来显示数据外观，如标记段落、标题等。
+DTD，文档类型定义，英文全称：Document Type Definition，应该是最容易被忽视的部分。
+！内部DTD&lt;!DOCTYPE 根元素 [元素声明]&gt;！外部DTD&lt;!DOCTYPE 根元素 SYSTEM [URI]&gt;！公共DTD&lt;!DOCTYPE 根元素 PUBLIC [公共URI]&gt; XXE，XML外部实体注入漏洞，英文全称：XML eXternal Entity Injection
+漏洞原理：通过向Server提交指定的XML实体内容请求，服务器解析实体内容并进行响应所产生的漏洞。
+现状：目前多数语言默认禁止XML函数解析外部实体，此后漏洞因此得以避免。以PHP为例，libxml用来解析XML，但在PHP&gt;=2.9.0的版本中已默认禁止解析外部实体。
+模拟XXE漏洞，一般通过手动指定libxml_noent选项开启外部实体解析。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xf3n9.github.io/posts/pikachu/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-31T00:00:00+00:00" />
+<title>Pikachu | xf3n9 secwalk</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.78166b9d46e23e0ea915cb6887a30b633e7bc4fad10c8b6b9f6fa532271c19ba.js" integrity="sha256-eBZrnUbiPg6pFctoh6MLYz57xPrRDItrn2&#43;lMiccGbo=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>xf3n9 secwalk</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+  
+
+
+
+  
+    
+  
+
+
+
+<ul class="book-languages">
+  <li>
+    <input type="checkbox" id="languages" class="toggle" />
+    <label for="languages" class="flex justify-between">
+      <a role="button" class="flex align-center">
+        <img src="/svg/translate.svg" class="book-icon" alt="Languages" />
+        English
+      </a>
+    </label>
+
+    <ul>
+      
+      <li>
+        <a href="https://xf3n9.github.io/zh/">
+          Chinese
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>🍔Hack the Box</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/bashed/" class="">Bashed</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/nibbles/" class="">Nibbles</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/inject/" class="">Inject</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/shocker/" class="">Shocker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/hackthebox/brainfuck/" class="">Brainfuck</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>🍕Vulnhub</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/vulnhub/golden-eye/" class="">Golden Eye</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        🌮Blog
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="#"  target="_blank" rel="noopener">
+        About
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Pikachu</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/posts/pikachu/">Pikachu</a>
+  </h1>
+  
+  <h5>March 31, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-03/">2023-03</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/XML/">XML</a>, 
+      <a href="/tags/XXE/">XXE</a>, 
+      <a href="/tags/DTD/">DTD</a>
+  </div>
+  
+
+
+
+<p>XXE</p>
+<p>在了解XXE之前，先了解下XML</p>
+<p><strong>XML</strong>是可扩展标记语言，英文全称：<strong>eXtensible Markup Language</strong></p>
+<p>我们先来具体了解一下XML到底是什么？然后再探讨这种语言设计的目的。</p>
+<pre tabindex="0"><code>第一部分：XML声明。定义XML版本（1.0），或与编码一起定义（UTF-8：万国码）
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+第二部分：DTD文档类型定义。
+&lt;!DOCTYPE node[]&gt;
+第三部分：XML元素
+&lt;node&gt;
+&lt;to&gt;Dave&lt;/to&gt;
+&lt;from&gt;Tom&lt;/from&gt;
+&lt;body&gt;You are a good man&lt;/body&gt;
+&lt;/node&gt;
+</code></pre><p>看起来，XML由标签构成，属于树形结构。与HTML十分相像，但用途却不同。XML主要用于传输存储数据，而HTML用来显示数据外观，如标记段落、标题等。</p>
+<p>DTD，文档类型定义，英文全称：Document Type Definition，应该是最容易被忽视的部分。</p>
+<pre tabindex="0"><code>！内部DTD
+&lt;!DOCTYPE 根元素 [元素声明]&gt;
+！外部DTD
+&lt;!DOCTYPE 根元素 SYSTEM [URI]&gt;
+！公共DTD
+&lt;!DOCTYPE 根元素 PUBLIC [公共URI]&gt;
+</code></pre><blockquote>
+<p>XXE，XML外部实体注入漏洞，英文全称：<strong>XML eXternal Entity Injection</strong></p>
+<p>漏洞原理：通过向Server提交指定的XML实体内容请求，服务器解析实体内容并进行响应所产生的漏洞。</p>
+<p>现状：目前多数语言默认禁止XML函数解析外部实体，此后漏洞因此得以避免。以PHP为例，libxml用来解析XML，但在PHP&gt;=2.9.0的版本中已默认禁止解析外部实体。</p>
+<p>模拟XXE漏洞，一般通过手动指定libxml_noent选项开启外部实体解析。</p>
+</blockquote>
+<pre tabindex="0"><code></code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

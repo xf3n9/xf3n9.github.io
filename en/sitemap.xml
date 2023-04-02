@@ -2,45 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/starting-point/</loc>
+    <loc>https://xf3n9.github.io/docs/hackthebox/</loc>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/</loc>
+    <loc>https://xf3n9.github.io/docs/hackthebox/bashed/</loc>
   </url><url>
-    <loc>https://xf3n9.github.io/posts/creating-a-new-theme/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <loc>https://xf3n9.github.io/docs/hackthebox/nibbles/</loc>
   </url><url>
-    <loc>https://xf3n9.github.io/posts/migrate-from-jekyll/</loc>
-    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+    <loc>https://xf3n9.github.io/docs/vulnhub/</loc>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/</loc>
+    <loc>https://xf3n9.github.io/docs/hackthebox/inject/</loc>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/inject/</loc>
+    <loc>https://xf3n9.github.io/docs/hackthebox/shocker/</loc>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/vulnhub/</loc>
+    <loc>https://xf3n9.github.io/docs/hackthebox/brainfuck/</loc>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/brainfuck/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/posts/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xf3n9.github.io/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://xf3n9.github.io/zh/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://xf3n9.github.io/"
-                />
-  </url><url>
-    <loc>https://xf3n9.github.io/posts/goisforlovers/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <loc>https://xf3n9.github.io/categories/2023-03/</loc>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://xf3n9.github.io/categories/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -52,29 +32,27 @@
                 href="https://xf3n9.github.io/categories/"
                 />
   </url><url>
-    <loc>https://xf3n9.github.io/tags/development/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <loc>https://xf3n9.github.io/tags/DTD/</loc>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xf3n9.github.io/categories/Development/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <loc>https://xf3n9.github.io/</loc>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://xf3n9.github.io/zh/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://xf3n9.github.io/"
+                />
   </url><url>
-    <loc>https://xf3n9.github.io/posts/hugoisforlovers/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xf3n9.github.io/tags/go/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xf3n9.github.io/tags/golang/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xf3n9.github.io/categories/golang/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xf3n9.github.io/tags/hugo/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <loc>https://xf3n9.github.io/posts/pikachu/</loc>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://xf3n9.github.io/tags/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -86,41 +64,16 @@
                 href="https://xf3n9.github.io/tags/"
                 />
   </url><url>
-    <loc>https://xf3n9.github.io/tags/templates/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <loc>https://xf3n9.github.io/tags/XML/</loc>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xf3n9.github.io/tags/themes/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <loc>https://xf3n9.github.io/tags/XXE/</loc>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/hackthebox/starting-point/demo/</loc>
+    <loc>https://xf3n9.github.io/posts/</loc>
+    <lastmod>2023-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/hidden/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/boxwalk/vulnhub/golden-eye/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/buttons/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/columns/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/details/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/expand/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/hints/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/katex/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/mermaid/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/section/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/section/first-page/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/section/second-page/</loc>
-  </url><url>
-    <loc>https://xf3n9.github.io/docs/shortcodes/tabs/</loc>
+    <loc>https://xf3n9.github.io/docs/vulnhub/golden-eye/</loc>
   </url><url>
     <loc>https://xf3n9.github.io/docs/</loc>
   </url>

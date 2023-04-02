@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
+nmap#An initial nmap scan showed only web/http (80) and ssh (22):
+$ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#The root page simply returns a “hello world” message">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="🌮Blog" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://xf3n9.github.io/posts/" />
-<title>🌮Blog | xf3n9 secwalk</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Nibbles" />
+<meta property="og:description" content="Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
+nmap#An initial nmap scan showed only web/http (80) and ssh (22):
+$ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#The root page simply returns a “hello world” message" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xf3n9.github.io/docs/hackthebox/nibbles/" /><meta property="article:section" content="docs" />
+
+
+<title>Nibbles | xf3n9 secwalk</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
@@ -17,7 +23,6 @@
   <script defer src="/en.search.min.78166b9d46e23e0ea915cb6887a30b633e7bc4fad10c8b6b9f6fa532271c19ba.js" integrity="sha256-eBZrnUbiPg6pFctoh6MLYz57xPrRDItrn2&#43;lMiccGbo=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://xf3n9.github.io/posts/index.xml" title="xf3n9 secwalk" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -128,7 +133,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/hackthebox/nibbles/" class="">Nibbles</a>
+    <a href="/docs/hackthebox/nibbles/" class="active">Nibbles</a>
   
 
         </li>
@@ -269,7 +274,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>🌮Blog</strong>
+  <strong>Nibbles</strong>
 
   <label for="toc-control">
     
@@ -282,49 +287,22 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-03/">2023-03</a>
-          <span>1</span>
+        <li><a href="#nmap">nmap</a></li>
+        <li><a href="#site---port-80-recon">Site - port 80 recon</a>
+          <ul>
+            <li><a href="#web-root">web root</a></li>
+          </ul>
         </li>
-      
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/DTD/">DTD</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/XML/">XML</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/XXE/">XXE</a>
-          <span>1</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
+
 
 
   </aside>
@@ -334,50 +312,48 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/posts/pikachu/">Pikachu</a>
-    </h2>
-    
-  <h5>March 31, 2023</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-03/">2023-03</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/XML/">XML</a>, 
-      <a href="/tags/XXE/">XXE</a>, 
-      <a href="/tags/DTD/">DTD</a>
-  </div>
-  
-
-
-
-
-    <p>XXE
-在了解XXE之前，先了解下XML
-XML是可扩展标记语言，英文全称：eXtensible Markup Language
-我们先来具体了解一下XML到底是什么？然后再探讨这种语言设计的目的。
-第一部分：XML声明。定义XML版本（1.0），或与编码一起定义（UTF-8：万国码）&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;第二部分：DTD文档类型定义。&lt;!DOCTYPE node[]&gt;第三部分：XML元素&lt;node&gt;&lt;to&gt;Dave&lt;/to&gt;&lt;from&gt;Tom&lt;/from&gt;&lt;body&gt;You are a good man&lt;/body&gt;&lt;/node&gt; 看起来，XML由标签构成，属于树形结构。与HTML十分相像，但用途却不同。XML主要用于传输存储数据，而HTML用来显示数据外观，如标记段落、标题等。
-DTD，文档类型定义，英文全称：Document Type Definition，应该是最容易被忽视的部分。
-！内部DTD&lt;!DOCTYPE 根元素 [元素声明]&gt;！外部DTD&lt;!DOCTYPE 根元素 SYSTEM [URI]&gt;！公共DTD&lt;!DOCTYPE 根元素 PUBLIC [公共URI]&gt; XXE，XML外部实体注入漏洞，英文全称：XML eXternal Entity Injection
-漏洞原理：通过向Server提交指定的XML实体内容请求，服务器解析实体内容并进行响应所产生的漏洞。
-现状：目前多数语言默认禁止XML函数解析外部实体，此后漏洞因此得以避免。以PHP为例，libxml用来解析XML，但在PHP&gt;=2.9.0的版本中已默认禁止解析外部实体。
-模拟XXE漏洞，一般通过手动指定libxml_noent选项开启外部实体解析。
-    </p>
-  </article>
-  
-
-  
+  <article class="markdown"><p>Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of 
+  <a href="http://www.nibbleblog.com/">nibbleblog</a>. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing <code>sudo</code> on a file that is world-writable.</p>
+<h2 id="nmap">
+  nmap
+  <a class="anchor" href="#nmap">#</a>
+</h2>
+<p>An initial nmap scan showed only web/http (80) and ssh (22):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ nmap -sV -sC -oA nmap/initial 10.10.10.75
+</span></span></code></pre></div><h2 id="site---port-80-recon">
+  Site - port 80 recon
+  <a class="anchor" href="#site---port-80-recon">#</a>
+</h2>
+<h3 id="web-root">
+  web root
+  <a class="anchor" href="#web-root">#</a>
+</h3>
+<p>The root page simply returns a “hello world” message</p>
+<p>However, looking at the source provides a hint as to where to go next:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">b</span>&gt;Hello world!&lt;/<span style="color:#f92672">b</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- /nibbleblog/ directory. Nothing interesting here! --&gt;</span>
+</span></span></code></pre></div><h4 id="gobuster">
+  gobuster
+  <a class="anchor" href="#gobuster">#</a>
+</h4>
+<p>As there’s not much obvious to do with this blog,</p>
+<p>let’s start a <code>gobuster</code> to see what pages are there.</p>
+<p>Having noticed that the links on the page were to php files,</p>
+<p>we’ll search for php and txt extensions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ gobuster -u http://10.10.10.75/nibbleblog/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t <span style="color:#ae81ff">20</span> -x php,txt
+</span></span></code></pre></div><h4 id="identifying-a-username">
+  Identifying a username
+  <a class="anchor" href="#identifying-a-username">#</a>
+</h4>
+<p>In exploring the resulting paths, <code>/nibbleblog/content</code> is interesting, and has dir lists enabled. Digging deeper, there’s a page at <code>/nibbleblog/content/private/user.xml</code> which reveals a user, admin, as well as the IPs that have tried to log in as it:</p>
+<h4 id="logging-into-admin-panel">
+  logging into admin panel
+  <a class="anchor" href="#logging-into-admin-panel">#</a>
+</h4>
+<p>The <code>gobuster</code> also showed a <code>/admin.php</code> path, and that presents a login page:</p>
+<p>I wasn’t able to locate a password elsewhere on the blog, and nibbleblog doesn’t have a default password. Luckily, the guess of nibbles worked, and we are in:</p>
+</article>
  
       
 
@@ -402,6 +378,10 @@ DTD，文档类型定义，英文全称：Document Type Definition，应该是�
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -411,49 +391,22 @@ DTD，文档类型定义，英文全称：Document Type Definition，应该是�
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-03/">2023-03</a>
-          <span>1</span>
+        <li><a href="#nmap">nmap</a></li>
+        <li><a href="#site---port-80-recon">Site - port 80 recon</a>
+          <ul>
+            <li><a href="#web-root">web root</a></li>
+          </ul>
         </li>
-      
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/DTD/">DTD</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/XML/">XML</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/XXE/">XXE</a>
-          <span>1</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
+
 
  
       </div>
