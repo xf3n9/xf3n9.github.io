@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
+<meta name="description" content="HTB: Nibbles#Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
 nmap#An initial nmap scan showed only web/http (80) and ssh (22):
 $ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#The root page simply returns a “hello world” message">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Nibbles" />
-<meta property="og:description" content="Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
+<meta property="og:description" content="HTB: Nibbles#Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
 nmap#An initial nmap scan showed only web/http (80) and ssh (22):
 $ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#The root page simply returns a “hello world” message" />
 <meta property="og:type" content="article" />
@@ -18,7 +18,7 @@ $ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#Th
 <title>Nibbles | xf3n9 secwalk</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.a82d7e77ceb134d151c4d7e381eeb30623fbd5a524d58c584d8716ecec0205bd.css" integrity="sha256-qC1&#43;d86xNNFRxNfjge6zBiP71aUk1YxYTYcW7OwCBb0=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.78166b9d46e23e0ea915cb6887a30b633e7bc4fad10c8b6b9f6fa532271c19ba.js" integrity="sha256-eBZrnUbiPg6pFctoh6MLYz57xPrRDItrn2&#43;lMiccGbo=" crossorigin="anonymous"></script>
 
@@ -133,7 +133,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/hackthebox/nibbles/" class="active">Nibbles</a>
+    <a href="/docs/hackthebox/brainfuck/" class="">Brainfuck</a>
   
 
         </li>
@@ -159,7 +159,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/hackthebox/shocker/" class="">Shocker</a>
+    <a href="/docs/hackthebox/nibbles/" class="active">Nibbles</a>
   
 
         </li>
@@ -172,7 +172,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/hackthebox/brainfuck/" class="">Brainfuck</a>
+    <a href="/docs/hackthebox/shocker/" class="">Shocker</a>
   
 
         </li>
@@ -203,7 +203,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/vulnhub/golden-eye/" class="">Golden Eye</a>
+    <a href="/docs/vulnhub/golden-eye/" class="">Golden-Eye</a>
   
 
         </li>
@@ -290,7 +290,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#htb-nibbles">HTB: Nibbles</a>
       <ul>
         <li><a href="#nmap">nmap</a></li>
         <li><a href="#site---port-80-recon">Site - port 80 recon</a>
@@ -312,7 +312,11 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><p>Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of 
+  <article class="markdown"><h1 id="htb-nibbles">
+  HTB: Nibbles
+  <a class="anchor" href="#htb-nibbles">#</a>
+</h1>
+<p>Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of 
   <a href="http://www.nibbleblog.com/">nibbleblog</a>. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing <code>sudo</code> on a file that is world-writable.</p>
 <h2 id="nmap">
   nmap
@@ -394,7 +398,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#htb-nibbles">HTB: Nibbles</a>
       <ul>
         <li><a href="#nmap">nmap</a></li>
         <li><a href="#site---port-80-recon">Site - port 80 recon</a>

